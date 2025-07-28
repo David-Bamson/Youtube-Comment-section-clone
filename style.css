@@ -1,0 +1,166 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background: #444;
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+}
+
+.container {
+    background: #fff;
+    padding: 30px;
+    max-width: 1500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.new-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.new-img  {
+    width: 50px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.new-img img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.Userinput input{
+    width: 900px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+}
+
+.Userinput input:active {
+    border: 2px solid #444;
+}
+
+.Userinput .action {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 5px;
+}
+
+.emoji {
+    font-size: 17px;
+}
+
+.actionBtns {
+    gap: 5px;
+}
+
+.cancel {
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 45px;
+    border: none;
+    transition: all .5s ease;
+
+}
+
+.cancel:hover {
+    background: #757575;
+}
+
+.comment {
+    background: #a3a3a3;
+    padding: 10px 20px;
+    border-radius: 45px;
+    border: none;
+}
+
+.comment-container {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 40px;
+}
+
+.profileImg {
+    width: 60px;
+    
+}
+
+.profileImg img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.commentContent {
+    width: 860px;
+}
+
+.nameDate {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.nameDate h5 {
+    font-size: 15px;
+    margin: 0;
+    font-weight: 700;
+}
+
+.nameDate h5 span {
+    font-weight: 500;
+}
+
+
+.message{
+    max-width: 850px;
+    margin-bottom: 10px;
+}
+
+.interactives {
+    display: flex;
+    gap: 10px;
+}
+
+.interactives a {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
+.triple-dot {
+    width: 50px;
+    text-align: center;
+    padding-top: 20px;
+    position: relative;
+}
+
+.triple-dot::before {
+    content: "Report";
+    display: inline-block;
+    font-size: 17px;
+    background-color: #757575;
+    color: #fff;
+    border-radius: 12px;
+    position: absolute;
+    left: 20%;
+    bottom: -140%;
+    padding: 15px 20px;
+    width: 100px;
+
+}
