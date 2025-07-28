@@ -3,7 +3,7 @@ body {
     margin: 0;
     box-sizing: border-box;
     background: #444;
-    min-height: 50vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,6 +44,12 @@ body {
     outline: none;
     border-bottom: 1px solid #000;
     padding-bottom: 5px;
+}
+
+.Userinput input:active{
+    border: none;
+    border-bottom: 2px solid #000;
+    outline: none;
 }
 
 .Userinput input:active {
@@ -148,19 +154,29 @@ body {
     text-align: center;
     padding-top: 20px;
     position: relative;
+    display: inline-block;
+    cursor: pointer;
 }
 
-.triple-dot::before {
-    content: "Report";
-    display: inline-block;
+.report-tooltip {
+    display: none;
     font-size: 17px;
-    background-color: #757575;
+    background-color: #535353;
     color: #fff;
     border-radius: 12px;
+    z-index: 1000;
     position: absolute;
     left: 20%;
     bottom: -140%;
     padding: 15px 20px;
     width: 100px;
-
+    display: none;
+    transition: all .5s ease;
+    cursor: pointer;
 }
+
+.report-tooltip:hover {
+    background: #000;
+    color: red;
+}
+
