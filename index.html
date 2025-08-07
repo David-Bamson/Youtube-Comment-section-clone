@@ -19,7 +19,7 @@
             </div>
 
             <div class="Userinput">
-                <input type="text" id="inputBox" placeholder="Add a comment...">
+                <textarea type="text" id="inputBox" placeholder="Add a comment..."></textarea>
                 <div class="action">
 
                     <i class="fa-regular fa-face-smile emoji"></i>
@@ -35,7 +35,23 @@
 
         <div id="commentContainer">
 
+    </div>
+
+    <div class="report-modal hidden">
+        <div class="report-box">
+            <h4>Reason for reporting</h4>
+            <ul>
+                <li><input type="radio" name="reportReason" value="Spam">Spam</li>
+                <li><input type="radio" name="reportReason" value="Harassment">Harassment</li>
+                <li><input type="radio" name="reportReason" value="Hate Speech">Hate Speech</li>
+                <li><input type="radio" name="reportReason" value="Other">Other</li>
+            </ul>
+            <div class="report-actions">
+                <button class="cancel-report">Cancel</button>
+                <button class="submit-report">Submit</button>
+            </div>
         </div>
+    </div>
 
     
 

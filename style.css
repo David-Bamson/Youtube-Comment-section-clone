@@ -2,20 +2,23 @@ body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background: #444;
+    background: #000; 
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    color: #ccc; 
+    
 }
 
 .container {
-    background: #fff;
+    background: #111; 
     padding: 30px;
     max-width: 1500px;
     display: flex;
     flex-direction: column;
+    color: #ccc; 
 }
 
 .new-input {
@@ -38,32 +41,38 @@ body {
     border-radius: 50%;
 }
 
-.Userinput input{
+.Userinput textarea{
     width: 900px;
     border: none;
     outline: none;
-    border-bottom: 1px solid #000;
-    padding-bottom: 5px;
+    font-size: 18px;
+    border-bottom: 1px solid #555;
+    resize: none;
+    overflow-y: hidden;
+    background: transparent;
+    color: #ccc;
 }
 
-.Userinput input:active{
+.Userinput textarea:active{
     border: none;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid #888;
     outline: none;
 }
 
-.Userinput input:active {
-    border: 2px solid #444;
+.Userinput textarea:active {
+    border: 2px solid #888;
 }
 
 .Userinput .action {
     display: flex;
     justify-content: space-between;
     padding: 5px 5px;
+    color: #ccc;
 }
 
 .emoji {
     font-size: 17px;
+    color: #ccc;
 }
 
 .actionBtns {
@@ -71,23 +80,33 @@ body {
 }
 
 .cancel {
-    background: #fff;
+    background: #111;
+    color: #ccc;
     padding: 10px 20px;
     border-radius: 45px;
     border: none;
     transition: all .5s ease;
-
 }
 
 .cancel:hover {
-    background: #757575;
+    background: #333;
+}
+.cancel:active {
+    transform: translateY(5px);
 }
 
 .comment {
-    background: #a3a3a3;
+    font-weight: 600;
+    font-size: 13px;
+    background: #333;
     padding: 10px 20px;
     border-radius: 45px;
     border: none;
+    color: #ffffff;
+}
+
+.comment:active {
+    transform: translateY(3px);
 }
 
 .comment-container {
@@ -96,13 +115,13 @@ body {
     align-items: flex-start;
     justify-content: center;
     margin-bottom: 50px;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #444; /* changed */
     padding-bottom: 40px;
+    color: #ccc;
 }
 
 .profileImg {
     width: 60px;
-    
 }
 
 .profileImg img {
@@ -126,57 +145,216 @@ body {
     font-size: 15px;
     margin: 0;
     font-weight: 700;
+    color: #ccc; /* added */
 }
 
 .nameDate h5 span {
     font-weight: 500;
+    color: #aaa;
 }
 
-
-.message{
+.message {
     max-width: 850px;
     margin-bottom: 10px;
+    color: #ccc;
 }
 
 .interactives {
     display: flex;
     gap: 10px;
+    color: #ccc;
 }
 
 .interactives a {
     text-decoration: none;
-    color: #000;
+    color: #ccc; /* changed */
+    cursor: pointer;
+}
+
+.fa-thumbs-up{
+    cursor: pointer;
+}
+
+.fa-thumbs-down{
     cursor: pointer;
 }
 
 .triple-dot {
     width: 50px;
-    text-align: center;
-    padding-top: 20px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
     position: relative;
-    display: inline-block;
     cursor: pointer;
+    transition: all 1s ease;
+    color: #ccc;
+}
+
+.triple-dot:active {
+    background-color: #333;
 }
 
 .report-tooltip {
     display: none;
     font-size: 17px;
-    background-color: #535353;
-    color: #fff;
+    background-color: #222; /* changed */
+    color: #ccc; /* changed */
     border-radius: 12px;
     z-index: 1000;
     position: absolute;
     left: 20%;
-    bottom: -140%;
-    padding: 15px 20px;
-    width: 100px;
-    display: none;
+    bottom: -130%;
+    padding: 5px 15px;
     transition: all .5s ease;
     cursor: pointer;
 }
 
-.report-tooltip:hover {
-    background: #000;
-    color: red;
+.report-tooltip div {
+    padding: 5px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 12px;
+    color: #ccc; /* changed */
 }
 
+.report-tooltip div:hover {
+    background: #00000093;
+    color: #eee; /* changed */
+}
+
+/* Message styling */
+.message {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: .5rem 0;
+}
+
+
+
+/* EDIT TEXTAREA STYLE */
+.edit textarea {
+    width: 700px;
+    height: 100px;
+    border: none;
+    outline: none;
+    border: 1px solid #555;
+    font-size: 18px;
+    border-radius:10px;
+    padding: 10px 0 0 14px;
+    resize: none;
+    overflow-y: hidden;
+    background: #555;
+    color: #ccc;
+    margin-left: -100px;
+}
+
+.edit .edit-optn {
+    display: flex;
+    gap: 5px;
+}
+
+.edit .edit-optn .cancel-edit-btn{
+    background: #111;
+    color: #ccc;
+    padding: 10px 20px;
+    border-radius: 45px;
+    border: none;
+    cursor: pointer;
+}
+
+.edit .edit-optn .cancel-edit-btn:hover {
+    background: #333;
+}
+
+.edit .edit-optn .save-edit-btn {
+    background: #a0a0a0;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 45px;
+    border: none;
+    cursor: pointer;
+}
+
+/* report modal */
+.report-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    
+}
+
+.hidden {
+    display: none;
+}
+
+.report-box {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    gap: 50px;
+    background: #141414;
+    border-radius: 50px;
+    width: 400px;
+}
+
+.report-box h4{
+    font-size: 25px;
+}
+
+.report-box ul {
+    margin-top: -10px;
+    margin-left: -15px;
+    list-style: none;
+}
+
+.report-box ul li {
+    font-size: 23px;
+    letter-spacing: .6px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.report-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-bottom: 40px;
+}
+
+.report-actions .cancel-report {
+    font-size: 14px;
+    padding: 8px 23px;
+    border-radius: 20px;
+    background: #202020;
+    border: none;
+    transition: all .5s ease;
+}
+
+.report-actions .cancel-report:hover {
+    background: #333;
+}
+
+.report-actions .submit-report {
+    font-size: 14px;
+    padding: 8px 23px;
+    border-radius: 20px;
+    border: none;
+    transition: all .5s ease;
+}
+
+.report-actions .submit-report:hover {
+    background: #858484;
+}
