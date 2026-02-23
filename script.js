@@ -172,14 +172,37 @@ const reportSubmitBtn = document.querySelector('.submit-report');
     commentContainer.addEventListener('click', (e) => {
         if(e.target.matches(".fa-thumbs-up")) {
             const index = e.target.dataset.index;
-            commentList[index].likes++;
+            const comment =  commentList[index];
+
+            if(comment.voted === "liked"){
+                comment.likes--;
+                comment.voted = null;
+            }else{
+                if(comment.voted === "disliked"){
+                    comment.dislikes--;
+                }
+                comment.likes++;
+                comment.voted = "liked";
+            }
             saveCommentToStorage(commentList);
             renderComments();
         }
 
         if(e.target.matches(".fa-thumbs-down")) {
             const index = e.target.dataset.index;
-            commentList[index].dislikes++;
+            const comment = commentList[index];
+
+            if(comment.voted === "disliked"){
+                comment.dislikes--;
+                comment.voted = null;
+            }else {
+                if(comment.voted === "liked"){
+                    comment.likes--;
+                }
+                comment.dislikes++;
+                comment.voted = "disliked";
+            }
+
             saveCommentToStorage(commentList);
             renderComments();
         }
