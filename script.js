@@ -103,7 +103,41 @@ const reportSubmitBtn = document.querySelector('.submit-report');
                 </div>
             `;
 
-            commentContainer.appendChild(commentDiv)
+            commentContainer.appendChild(commentDiv);
+
+            // Render replies
+            if(comment.replies && comment..replies > 0) {
+                comment.replies.forEach((reply, replyIndex) => {
+                    const replyDiv = document.createElement("div");
+                    replyDiv.classList.add("reply-container");
+                    replyDiv.innerHTML = `
+                    <div class="profileImg>
+                        <img src="download.png">
+                    </div>
+                    <div class="commentContent">
+                        <div class="nameDate">
+                            <h5>@DeoMetrics <span>${timeAgo(reply.timestamp)}</span></h5>
+                        </div>
+                        <div class="message">
+                            <p> <span class="reply-mention">@DeoMetrics</span>${reply.text} </p>
+                        </div>
+
+                        <div class="interactives">
+                            <div class="thump-up">
+                                <i class="fa-solid fa-thumbs-up" data-comment-index="${index}" data-reply-index="${replyIndex}" data-type="reply"></i>
+                                <span>${reply.likes}</span>
+                            </div>
+
+                            <div class="thumb-down">
+                                <i class="fa-solid fa-thumbs-down" data-comment-index="${index}" data-reply-index="${replyIndex}" data-type="reply"></i>
+                                <span>${reply.dislikes}</span>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    commentContainer.appendChild(replyDiv);
+                });
+            }
 
             const messageEl = document.createElement('div');
             messageEl.className = 'message';
@@ -160,7 +194,9 @@ const reportSubmitBtn = document.querySelector('.submit-report');
                 text: commentText,
                 timestamp: new Date().toISOString(),
                 likes: 0,
-                dislikes: 0
+                dislikes: 0,
+                voted: null,
+                replies: []
             };
 
             commentList.unshift(newComment);

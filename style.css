@@ -234,28 +234,38 @@ body {
     margin: .5rem 0;
 }
 
+.message:has(.edit){
+    margin: 0;
+    line-height: 1;
+}
 
 
 /* EDIT TEXTAREA STYLE */
+.edit{
+    width: 100%;
+}
+
 .edit textarea {
-    width: 700px;
-    height: 100px;
+    width: 100%;
+    min-height: 60px;
+    background: transparent;
     border: none;
+    border-bottom: 1px solid #555;
     outline: none;
-    border: 1px solid #555;
-    font-size: 18px;
-    border-radius:10px;
-    padding: 10px 0 0 14px;
+    border-radius: 4px;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 10px;
     resize: none;
-    overflow-y: hidden;
-    background: #555;
-    color: #ccc;
-    margin-left: -100px;
+    box-sizing: border-box;
 }
 
 .edit .edit-optn {
     display: flex;
-    gap: 5px;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-bottom: -60px;
 }
 
 .edit .edit-optn .cancel-edit-btn{
