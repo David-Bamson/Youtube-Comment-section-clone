@@ -290,6 +290,74 @@ body {
     cursor: pointer;
 }
 
+/* Reply  */
+.reply-container{
+    display: flex;
+    align-items: flex-start;
+    margin: 0px 0 20px 60px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #333;
+    color: #ccc;
+}
+
+.reply-mention {
+    color: #4a9eff;
+    font-weight: 600;
+}
+
+.reply-input-area {
+    width: 100%;
+    margin-top: -px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.reply-textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #555;
+    color: #ccc;
+    font-size: 15px;
+    font-family: inherit;
+    resize: none;
+    outline: none;
+    padding: 5px 0;
+    box-sizing: border-box;
+}
+
+.reply-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.cancel-reply-btn {
+    background: transparent;
+    color: #ccc;
+    padding: 8px 18px;
+    border-radius: 45px;
+    border: none;
+    cursor: pointer;
+}
+
+.cancel-reply-btn:hover {
+    background: #333;
+}
+
+.save-reply-btn {
+    background: #a0a0a0;
+    color: #000;
+    padding: 8px 18px;
+    border-radius: 45px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+
 /* report modal */
 .report-modal {
     position: fixed;

@@ -7,6 +7,10 @@ const reportModal = document.querySelector('.report-modal');
 const reportCancelBtn = document.querySelector('.cancel-report');
 const reportSubmitBtn = document.querySelector('.submit-report');
 
+document.getElementById('commentContainer').addEventListener('click', (e) => {
+    console.log('container clicked', e.target.className);
+});
+
     let commentList = [];
     let savedComments = localStorage.getItem("comments");
     if(savedComments){
@@ -88,7 +92,7 @@ const reportSubmitBtn = document.querySelector('.submit-report');
                             <span>${comment.dislikes}</span>
                         </div>
                         
-                        <a href="#"> Reply </a>
+                        <a class="reply-btn" data-index="${index}"> Reply </a>
                     </div>
 
                 </div>
@@ -106,7 +110,7 @@ const reportSubmitBtn = document.querySelector('.submit-report');
             commentContainer.appendChild(commentDiv);
 
             // Render replies
-            if(comment.replies && comment..replies > 0) {
+            if(comment.replies && comment.replies.length > 0) {
                 comment.replies.forEach((reply, replyIndex) => {
                     const replyDiv = document.createElement("div");
                     replyDiv.classList.add("reply-container");
@@ -206,43 +210,136 @@ const reportSubmitBtn = document.querySelector('.submit-report');
     });
 
     commentContainer.addEventListener('click', (e) => {
+
+
+        if(e.target.tagName === "A") e.preventDefault();
+
+
         if(e.target.matches(".fa-thumbs-up")) {
-            const index = e.target.dataset.index;
-            const comment =  commentList[index];
+            const type = e.target.dataset.type;
+
+            if(type === "reply") {
+                const ci = e.target.dataset.commentIndex;
+                const ri = e.target.dataset.replyIndex;
+                const reply = commentList[ci].replies[ri];
+
+                if(reply.voted === "liked") {
+                    reply.likes--;
+                    reply.voted = "null";
+                }else {
+                    if(reply.voted === "disliked") reply.dislikes--;
+                    reply.likes++;
+                    reply.voted ="liked";
+                }
+            }else {
+                const index = e.target.dataset.index;
+                const comment =  commentList[index];
 
             if(comment.voted === "liked"){
-                comment.likes--;
-                comment.voted = null;
+                    comment.likes--;
+                    comment.voted = null;
             }else{
                 if(comment.voted === "disliked"){
                     comment.dislikes--;
                 }
-                comment.likes++;
-                comment.voted = "liked";
+                    comment.likes++;
+                    comment.voted = "liked";
+                }
             }
+
+
             saveCommentToStorage(commentList);
             renderComments();
         }
 
         if(e.target.matches(".fa-thumbs-down")) {
+        const type = e.target.dataset.type;
+
+        if(type === "reply") {
+            const ci = e.target.dataset.commentIndex;
+            const ri = e.target.dataset.replyIndex;
+            const reply = commentList[ci].replies[ri];
+
+            if(reply.voted === "disliked") {
+                reply.dislikes--;
+                reply.voted = null;
+            } else {
+                if(reply.voted === "liked") reply.likes--;
+                reply.dislikes++;
+                reply.voted = "disliked";
+            }
+        } else {
             const index = e.target.dataset.index;
             const comment = commentList[index];
 
-            if(comment.voted === "disliked"){
+            if(comment.voted === "disliked") {
                 comment.dislikes--;
                 comment.voted = null;
-            }else {
-                if(comment.voted === "liked"){
-                    comment.likes--;
-                }
+            } else {
+                if(comment.voted === "liked") comment.likes--;
                 comment.dislikes++;
                 comment.voted = "disliked";
             }
+        }
 
             saveCommentToStorage(commentList);
             renderComments();
         }
 
+
+        // Reply button toggle
+        if(e.target.matches(".reply-btn")) {
+            const index = e.target.dataset.index;
+
+            document.querySelectorAll(".reply-input-area").forEach(el => el.remove());
+
+            const commentDiv = commentContainer.querySelectorAll(".comment-container")[index];
+            const existing = commentDiv.querySelector(".reply-input-area");
+            if(existing) {
+                existing.remove()
+                return;
+            }
+
+            const replyBox = document.createElement("div");
+            replyBox.classList.add("reply-input-area");
+            replyBox.innerHTML = `
+                <textarea class="reply-textarea" placeholder="Add a reply..."></textarea>
+                <div class="reply-actions">
+                    <button class="cancel-reply-btn">Cancel</button>
+                    <button class="save-reply-btn" data-index="${index}">Reply</button>
+                </div>
+            `;
+            commentDiv.querySelector(".commentContent").appendChild(replyBox);
+            replyBox.querySelector(".reply-textarea").focus();
+        }
+
+        // Cancel Reply
+        if(e.target.classList.contains("cancel-reply-btn")) {
+            e.target.closest(".reply-input-area").remove();
+        }
+
+        // Save reply
+        if(e.target.classList.contains("save-reply-btn")) {
+            const index = e.target.dataset.index;
+            const replyBox = e.target.closest(".reply-input-area");
+            const text = replyBox.querySelector(".reply-textarea").value.trim()
+            if(text === "") return;
+
+            if(!commentList[index].replies) commentList[index].replies = [];
+
+            commentList[index].replies.push({
+                id: generateUniqueId(),
+                text: text,
+                timestamp: new Date().toISOString(),
+                likes: 0,
+                dislikes: 0,
+                voted: null,
+                replies: []
+            });
+
+            saveCommentToStorage(commentList);
+            renderComments();
+        }
 
 
         if(e.target.classList.contains('delete-option')){
