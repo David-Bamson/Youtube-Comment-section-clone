@@ -115,7 +115,7 @@ document.getElementById('commentContainer').addEventListener('click', (e) => {
                     const replyDiv = document.createElement("div");
                     replyDiv.classList.add("reply-container");
                     replyDiv.innerHTML = `
-                    <div class="profileImg>
+                    <div class="profileImg">
                         <img src="download.png">
                     </div>
                     <div class="commentContent">
